@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sidebar-width: 240px;
+    --sidebar-collapsed-width: 64px;
+    --topbar-height: 56px;
+    --content-max-width: 1440px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-surface-50 text-slate-800 font-sans;
+    min-height: 100vh;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-300;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+}
+
+@layer components {
+  /* ── Skeleton loader base ── */
+  .skeleton {
+    @apply bg-slate-200 animate-skeleton rounded;
+  }
+
+  /* ── Status dot sizes ── */
+  .status-dot {
+    @apply inline-block rounded-full flex-shrink-0;
+  }
+
+  /* ── Card base ── */
+  .card {
+    @apply bg-white rounded-xl border border-slate-100 shadow-card;
+  }
+
+  /* ── Section divider ── */
+  .section-divider {
+    @apply border-t border-slate-100 my-6;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    @apply flex items-start justify-between gap-4 mb-6;
+  }
+
+  /* ── Sidebar nav item ── */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium
+           text-slate-600 hover:text-slate-900 hover:bg-slate-100
+           transition-colors duration-150 cursor-pointer relative;
+  }
+
+  .nav-item.active {
+    @apply text-brand-700 bg-brand-50 hover:bg-brand-50 hover:text-brand-700;
+  }
+
+  /* ── Table base ── */
+  .data-table {
+    @apply w-full text-sm;
+  }
+
+  .data-table th {
+    @apply text-xs font-semibold text-slate-500 uppercase tracking-wider
+           px-4 py-3 text-left bg-slate-50 border-b border-slate-100;
+  }
+
+  .data-table td {
+    @apply px-4 py-3.5 border-b border-slate-50 text-slate-700 align-middle;
+  }
+
+  .data-table tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .data-table tbody tr:hover td {
+    @apply bg-slate-50/60;
+  }
+
+  /* ── Form base ── */
+  .form-label {
+    @apply block text-sm font-medium text-slate-700 mb-1.5;
+  }
+
+  .form-input {
+    @apply w-full px-3 py-2.5 text-sm text-slate-800 bg-white
+           border border-slate-200 rounded-lg
+           placeholder-slate-400
+           hover:border-slate-300
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
+           transition-colors duration-150;
+  }
+
+  .form-input-error {
+    @apply border-red-300 focus:ring-red-400;
+  }
+
+  .form-select {
+    @apply form-input appearance-none bg-no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+
+  .form-textarea {
+    @apply form-input resize-none;
+  }
+
+  .form-error {
+    @apply text-xs text-red-500 mt-1;
+  }
+
+  .form-hint {
+    @apply text-xs text-slate-500 mt-1;
+  }
+
+  /* ── Badge base ── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  /* ── Tooltip ── */
+  .tooltip {
+    @apply absolute z-50 px-2.5 py-1.5 text-xs font-medium text-white
+           bg-slate-800 rounded-lg shadow-lg whitespace-nowrap
+           pointer-events-none;
+  }
+
+  /* ── Chart container ── */
+  .chart-container {
+    @apply w-full h-full flex items-center justify-center;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .border-dashed-brand {
+    border: 2px dashed theme('colors.brand.200');
+  }
+
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
